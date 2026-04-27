@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusTech | Enterprise Automation Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: '#6366f1', dark: '#030303', panel: '#0f0f0f' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark text-white font-sans antialiased relative overflow-x-hidden selection:bg-brand selection:text-white">
+
+    <div class="fixed inset-0 opacity-[0.03] pointer-events-none z-[9999]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+
+    <div id="cursor" class="custom-cursor hidden lg:block"></div>
+    <div id="cursor-follower" class="cursor-follower hidden lg:block"></div>
+    
+    <div class="fixed top-[-10%] left-[-10%] w-[50rem] h-[50rem] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[50rem] h-[50rem] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+    <div id="fullscreen-menu" class="fixed inset-0 bg-dark/95 backdrop-blur-2xl z-[9999] flex flex-col items-center justify-center transition-all duration-500 opacity-0 pointer-events-none">
+        <button id="close-menu" class="absolute top-8 right-8 text-white hover:text-brand transition-colors transform hover:rotate-90 duration-300 z-[10000]">
+            <i class="ph ph-x text-4xl"></i>
+        </button>
+        <ul class="text-center space-y-6 text-4xl md:text-6xl font-black tracking-tight w-full">
+            <li class="menu-item"><a href="#hero" class="menu-link block hover:text-brand transition-colors">Home</a></li>
+            <li class="menu-item"><a href="#features" class="menu-link block hover:text-brand transition-colors">Systems</a></li>
+            <li class="menu-item"><a href="#process" class="menu-link block hover:text-brand transition-colors">Methodology</a></li>
+            <li class="menu-item"><a href="#testimonials" class="menu-link block hover:text-brand transition-colors">Results</a></li>
+            <li class="menu-item"><a href="#faq" class="menu-link block hover:text-brand transition-colors">FAQ</a></li>
+            <li class="menu-item"><a href="#capture" class="menu-link block hover:text-brand transition-colors text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">Book Audit</a></li>
+        </ul>
+    </div>
+
+    <nav class="fixed w-full top-0 z-50 bg-dark/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="text-2xl font-black tracking-tight flex items-center gap-2">
+                <i class="ph-fill ph-hexagon text-brand text-3xl drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]"></i>
+                Nexus<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Tech</span>
+            </div>
+            
+            <button id="menu-btn" class="text-white hover:text-brand transition-colors focus:outline-none flex items-center gap-2 group relative z-50">
+                <span class="text-sm font-bold tracking-widest uppercase hidden md:block group-hover:text-brand transition-colors">Menu</span>
+                <i class="ph ph-list text-3xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative z-10 container mx-auto px-6 pt-48 pb-24 min-h-screen flex flex-col items-center justify-center text-center">
+        <div class="reveal inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-semibold mb-8 backdrop-blur-md shadow-xl">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
+            Now Accepting New Growth Partners
+        </div>
+        
+        <h1 class="reveal text-6xl md:text-8xl lg:text-[7.5rem] font-black leading-[1.05] mb-8 tracking-tighter max-w-6xl drop-shadow-2xl">
+            Scale Operations With <br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-gradient">Automation</span>
+        </h1>
+        
+        <p class="reveal text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl font-light leading-relaxed">
+            Stop losing leads to fragile systems. We build bespoke CRM architectures and high-converting funnels that capture, nurture, and close on autopilot.
+        </p>
+        <div class="reveal flex flex-col sm:flex-row gap-6 w-full justify-center">
+            <a href="#capture" class="px-10 py-5 bg-white text-black font-extrabold rounded-full hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-3 text-lg shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+                Claim Free Audit <i class="ph-bold ph-arrow-right"></i>
+            </a>
+            <a href="#process" class="px-10 py-5 bg-transparent border border-white/20 text-white font-extrabold rounded-full hover:bg-white/5 transition-colors duration-300 flex items-center justify-center gap-3 text-lg">
+                Explore Our Systems <i class="ph-bold ph-caret-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="border-y border-white/5 bg-panel/50 py-10 relative z-10 w-full overflow-hidden flex flex-col justify-center shadow-2xl">
+        <div class="container mx-auto px-6 mb-8 text-center text-sm text-slate-500 font-bold tracking-[0.2em] uppercase">Trusted By Market Leading Agencies</div>
+        
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-buildings text-5xl text-blue-500"></i> APEX MEDIA</span>
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-rocket text-5xl text-red-500"></i> VELOCITY</span>
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-chart-line-up text-5xl text-indigo-500"></i> SCALEOPS</span>
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-globe text-5xl text-orange-500"></i> GLOBAL REACH</span>
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-lightning text-5xl text-pink-500"></i> SPARK GROWTH</span>
+            </div>
+            <div class="marquee-content">
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-buildings text-5xl text-blue-500"></i> APEX MEDIA</span>
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-rocket text-5xl text-red-500"></i> VELOCITY</span>
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-chart-line-up text-5xl text-indigo-500"></i> SCALEOPS</span>
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-globe text-5xl text-orange-500"></i> GLOBAL REACH</span>
+                <span class="text-3xl font-bold flex items-center gap-3 text-slate-300"><i class="ph-fill ph-lightning text-5xl text-pink-500"></i> SPARK GROWTH</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 container mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal">
+            <div class="p-8 rounded-3xl bg-panel/30 border border-white/5 shadow-xl hover:border-brand/30 transition-colors">
+                <div class="text-6xl font-black text-white mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">40<span class="text-brand">%</span></div>
+                <div class="text-slate-400 text-sm font-bold uppercase tracking-widest">Avg Conversion Lift</div>
+            </div>
+            <div class="p-8 rounded-3xl bg-panel/30 border border-white/5 shadow-xl hover:border-purple-500/30 transition-colors">
+                <div class="text-6xl font-black text-white mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">12<span class="text-purple-500">h</span></div>
+                <div class="text-slate-400 text-sm font-bold uppercase tracking-widest">Saved Weekly</div>
+            </div>
+            <div class="p-8 rounded-3xl bg-panel/30 border border-white/5 shadow-xl hover:border-pink-500/30 transition-colors">
+                <div class="text-6xl font-black text-white mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">100<span class="text-pink-500">k+</span></div>
+                <div class="text-slate-400 text-sm font-bold uppercase tracking-widest">Leads Processed</div>
+            </div>
+            <div class="p-8 rounded-3xl bg-panel/30 border border-white/5 shadow-xl hover:border-emerald-500/30 transition-colors">
+                <div class="text-6xl font-black text-white mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">99<span class="text-emerald-500">%</span></div>
+                <div class="text-slate-400 text-sm font-bold uppercase tracking-widest">Uptime SLA</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-32 container mx-auto px-6 relative z-10 border-t border-white/5">
+        <div class="text-center mb-24 reveal">
+            <h2 class="text-5xl md:text-7xl font-black mb-6">Built For Revenue</h2>
+            <p class="text-slate-400 max-w-3xl mx-auto text-xl font-light">We engineer every touchpoint to eliminate friction and maximize booked appointments.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="reveal glow-card-wrapper rounded-[2.5rem] p-[2px] tilt-card perspective-1000">
+                <div class="glass-card h-full p-12 rounded-[2.5rem] flex flex-col items-start bg-panel shadow-2xl">
+                    <div class="w-20 h-20 rounded-2xl bg-indigo-500/10 flex items-center justify-center mb-8 text-brand border border-indigo-500/30 shadow-[0_0_40px_rgba(99,102,241,0.3)]">
+                        <i class="ph-bold ph-funnel text-5xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-black mb-4">Conversion Funnels</h3>
+                    <p class="text-slate-400 text-lg leading-relaxed">Award-winning UI/UX design structured perfectly to capture attention, build trust, and force conversions.</p>
+                </div>
+            </div>
+            
+            <div class="reveal glow-card-wrapper rounded-[2.5rem] p-[2px] tilt-card perspective-1000" style="transition-delay: 100ms;">
+                <div class="glass-card h-full p-12 rounded-[2.5rem] flex flex-col items-start bg-panel shadow-2xl">
+                    <div class="w-20 h-20 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-8 text-purple-400 border border-purple-500/30 shadow-[0_0_40px_rgba(168,85,247,0.3)]">
+                        <i class="ph-bold ph-arrows-merge text-5xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-black mb-4">Flawless CRM Sync</h3>
+                    <p class="text-slate-400 text-lg leading-relaxed">Every lead instantly routes to your exact CRM pipelines with zero data loss, utilizing secure automated webhooks.</p>
+                </div>
+            </div>
+
+            <div class="reveal glow-card-wrapper rounded-[2.5rem] p-[2px] tilt-card perspective-1000" style="transition-delay: 200ms;">
+                <div class="glass-card h-full p-12 rounded-[2.5rem] flex flex-col items-start bg-panel shadow-2xl">
+                    <div class="w-20 h-20 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-8 text-pink-400 border border-pink-500/30 shadow-[0_0_40px_rgba(236,72,153,0.3)]">
+                        <i class="ph-bold ph-paper-plane-tilt text-5xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-black mb-4">Instant Nurture</h3>
+                    <p class="text-slate-400 text-lg leading-relaxed">Trigger intelligent SMS and email sequences the exact millisecond a prospect submits their information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-40 bg-panel/40 border-y border-white/5 relative z-10 shadow-2xl">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-32 reveal">
+                <h2 class="text-5xl md:text-7xl font-black mb-6">Our Methodology</h2>
+                <p class="text-slate-400 text-2xl font-light">A simple, transparent process from audit to launch. Scroll to review.</p>
+            </div>
+
+            <div class="relative border-l-4 border-white/10 ml-6 md:ml-12 py-10 space-y-32">
+                
+                <div class="timeline-step relative pl-16 md:pl-28 group">
+                    <div class="timeline-dot absolute -left-[14px] top-6 w-6 h-6 rounded-full bg-dark border-4 border-slate-600 transition-all duration-700"></div>
+                    <div class="timeline-content glass-card p-12 rounded-3xl border border-white/5 transition-all duration-700 opacity-30 transform translate-x-12 shadow-2xl">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-brand font-black text-xl tracking-widest uppercase block">Phase 01</span>
+                            <i class="ph-bold ph-magnifying-glass text-4xl text-slate-500"></i>
+                        </div>
+                        <h3 class="text-4xl font-black mb-4">System Audit & Blueprint</h3>
+                        <p class="text-slate-400 text-xl leading-relaxed">We jump on a call to review your current tech stack, identify where you are losing leads, and design a custom automation blueprint tailored to your agency.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step relative pl-16 md:pl-28 group">
+                    <div class="timeline-dot absolute -left-[14px] top-6 w-6 h-6 rounded-full bg-dark border-4 border-slate-600 transition-all duration-700"></div>
+                    <div class="timeline-content glass-card p-12 rounded-3xl border border-white/5 transition-all duration-700 opacity-30 transform translate-x-12 shadow-2xl">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-purple-500 font-black text-xl tracking-widest uppercase block">Phase 02</span>
+                            <i class="ph-bold ph-code-block text-4xl text-slate-500"></i>
+                        </div>
+                        <h3 class="text-4xl font-black mb-4">Architecture & Development</h3>
+                        <p class="text-slate-400 text-xl leading-relaxed">Our engineers build your high-converting assets with blazing-fast code, ensuring perfect rendering and conversion tracking across all devices.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step relative pl-16 md:pl-28 group">
+                    <div class="timeline-dot absolute -left-[14px] top-6 w-6 h-6 rounded-full bg-dark border-4 border-slate-600 transition-all duration-700"></div>
+                    <div class="timeline-content glass-card p-12 rounded-3xl border border-white/5 transition-all duration-700 opacity-30 transform translate-x-12 shadow-2xl">
+                         <div class="flex items-center justify-between mb-6">
+                            <span class="text-pink-500 font-black text-xl tracking-widest uppercase block">Phase 03</span>
+                            <i class="ph-bold ph-rocket-launch text-4xl text-slate-500"></i>
+                        </div>
+                        <h3 class="text-4xl font-black mb-4">Deployment & Scaling</h3>
+                        <p class="text-slate-400 text-xl leading-relaxed">We launch your new systems, securely integrating them into your CRM. You immediately begin capturing and converting leads at a significantly higher volume.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 container mx-auto px-6 relative z-10">
+        <div class="glass-card rounded-[3rem] p-16 border border-white/5 text-center reveal overflow-hidden relative shadow-2xl">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand/10 to-purple-500/10 pointer-events-none"></div>
+            <h2 class="text-4xl md:text-5xl font-black mb-8 relative z-10">The Automation Ecosystem</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative z-10">
+                <div class="w-24 h-24 rounded-2xl bg-white text-black flex items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.2)]"><i class="ph-bold ph-users text-5xl"></i></div>
+                <div class="hidden md:flex gap-2 text-brand text-2xl animate-pulse"><i class="ph-bold ph-circle"></i><i class="ph-bold ph-circle"></i><i class="ph-bold ph-circle"></i><i class="ph-bold ph-arrow-right"></i></div>
+                <div class="w-24 h-24 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-[0_0_40px_rgba(99,102,241,0.4)]"><i class="ph-bold ph-share-network text-5xl"></i></div>
+                <div class="hidden md:flex gap-2 text-purple-500 text-2xl animate-pulse"><i class="ph-bold ph-circle"></i><i class="ph-bold ph-circle"></i><i class="ph-bold ph-circle"></i><i class="ph-bold ph-arrow-right"></i></div>
+                <div class="w-24 h-24 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-[0_0_40px_rgba(168,85,247,0.4)]"><i class="ph-bold ph-kanban text-5xl"></i></div>
+            </div>
+            <div class="mt-12 text-slate-400 font-bold uppercase tracking-widest relative z-10 text-sm">Ad Traffic &nbsp; → &nbsp; High-Converting UI &nbsp; → &nbsp; Automated CRM Nurture</div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-32 container mx-auto px-6 relative z-10 border-t border-white/5">
+        <div class="text-center mb-24 reveal">
+            <h2 class="text-5xl md:text-7xl font-black mb-6">Proven ROI</h2>
+            <p class="text-slate-400 text-2xl font-light">Verified reviews from agencies that scaled with our systems.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+            <div class="glass-card p-10 rounded-3xl border border-white/5 reveal hover:-translate-y-4 transition-transform duration-500 shadow-xl">
+                <div class="flex gap-1 text-brand mb-6 text-2xl"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="text-slate-300 mb-8 text-xl leading-relaxed">"NexusTech rebuilt our entire lead funnel. We went from losing prospects to having highly qualified leads booking directly onto our calendars."</p>
+                <div class="flex items-center gap-5 border-t border-white/10 pt-6">
+                    <div class="w-14 h-14 rounded-full bg-indigo-500/20 border-2 border-indigo-500 flex items-center justify-center text-xl font-bold">A</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Alex Mercer</h4>
+                        <p class="text-sm text-brand font-semibold uppercase tracking-wider">CEO, ScaleOps</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 rounded-3xl border border-white/5 reveal hover:-translate-y-4 transition-transform duration-500 shadow-xl mt-0 lg:mt-16">
+                <div class="flex gap-1 text-brand mb-6 text-2xl"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="text-slate-300 mb-8 text-xl leading-relaxed">"The landing page design is absolute fire. But more importantly, the backend integration to our CRM increased our close rate by 40% in month one."</p>
+                <div class="flex items-center gap-5 border-t border-white/10 pt-6">
+                    <div class="w-14 h-14 rounded-full bg-purple-500/20 border-2 border-purple-500 flex items-center justify-center text-xl font-bold">S</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Sarah Jenkins</h4>
+                        <p class="text-sm text-purple-400 font-semibold uppercase tracking-wider">Founder, Jenkins Media</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="glass-card p-10 rounded-3xl border border-white/5 reveal hover:-translate-y-4 transition-transform duration-500 shadow-xl mt-0 lg:mt-32">
+                <div class="flex gap-1 text-brand mb-6 text-2xl"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="text-slate-300 mb-8 text-xl leading-relaxed">"Stop trying to build this yourself. Let them handle the tech stack. It’s a true 10x ROI when your systems finally work flawlessly."</p>
+                <div class="flex items-center gap-5 border-t border-white/10 pt-6">
+                    <div class="w-14 h-14 rounded-full bg-pink-500/20 border-2 border-pink-500 flex items-center justify-center text-xl font-bold">M</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Mike Torres</h4>
+                        <p class="text-sm text-pink-400 font-semibold uppercase tracking-wider">Director of Ops</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-32 bg-panel/30 border-y border-white/5 relative z-10 shadow-2xl">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-5xl font-black mb-6">Frequently Asked Questions</h2>
+                <p class="text-slate-400 text-xl font-light">Everything you need to know about our implementation process.</p>
+            </div>
+            
+            <div class="space-y-6 reveal">
+                <div class="faq-item glass-card p-8 md:p-10 rounded-3xl border border-white/5 hover:border-brand/50 transition-colors shadow-lg cursor-pointer">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-white pr-4">How long does implementation take?</h3>
+                        <i class="ph-bold ph-caret-down text-brand text-3xl transition-transform duration-300 faq-icon"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-slate-400 text-xl leading-relaxed pt-6">Most standard agency systems, including UI design, frontend development, and CRM webhook integration, are fully deployed within 14 to 21 business days after our initial blueprint call.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glass-card p-8 md:p-10 rounded-3xl border border-white/5 hover:border-brand/50 transition-colors shadow-lg cursor-pointer">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-white pr-4">Do I need to change my current CRM?</h3>
+                        <i class="ph-bold ph-caret-down text-brand text-3xl transition-transform duration-300 faq-icon"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-slate-400 text-xl leading-relaxed pt-6">Not necessarily. While we specialize in GoHighLevel for its robust automation capabilities, our API routing logic can seamlessly integrate with Salesforce, HubSpot, ActiveCampaign, or any CRM with webhook capabilities.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-card p-8 md:p-10 rounded-3xl border border-white/5 hover:border-brand/50 transition-colors shadow-lg cursor-pointer">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-white pr-4">What kind of ROI can I expect?</h3>
+                        <i class="ph-bold ph-caret-down text-brand text-3xl transition-transform duration-300 faq-icon"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-slate-400 text-xl leading-relaxed pt-6">Our partners typically see a 30-40% increase in lead-to-appointment conversion rates simply by eliminating friction in the frontend UI and ensuring zero leads drop out due to failed system syncs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="capture" class="py-40 relative z-10 bg-dark">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-20">
+            
+            <div class="lg:w-1/2 reveal">
+                <h2 class="text-6xl md:text-8xl font-black mb-8 leading-[1.1]">Ready To <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-purple-500">Dominate?</span></h2>
+                <p class="text-slate-400 text-2xl font-light mb-12 leading-relaxed">Book a free strategy session with our growth engineers. We will map out your entire automation flow and show you exactly where you are leaving money on the table.</p>
+                <div class="glass-card p-10 rounded-[2rem] border border-white/5 inline-block w-full shadow-2xl">
+                    <div class="flex items-center gap-6">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=150&q=80" alt="Consultant" class="w-20 h-20 rounded-full border-2 border-brand object-cover">
+                            <span class="absolute bottom-0 right-0 w-5 h-5 bg-emerald-500 border-4 border-dark rounded-full"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-2xl mb-1">Talk to an Architect</h4>
+                            <p class="text-lg text-slate-400">Secure your session today.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 w-full max-w-2xl reveal">
+                <div class="glass-card p-12 rounded-[3rem] border border-white/10 relative overflow-hidden shadow-[0_0_80px_rgba(99,102,241,0.15)]">
+                    <div class="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+                    
+                    <h3 class="text-4xl font-black mb-4 mt-2">Request Your Audit</h3>
+                    <p class="text-slate-400 text-lg mb-10 font-medium">Enter your details to claim your spot.</p>
+                    
+                    <form id="ghl-form" class="space-y-8">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-3 uppercase tracking-widest" for="name">Full Name</label>
+                            <div class="relative">
+                                <i class="ph-bold ph-user absolute left-6 top-1/2 transform -translate-y-1/2 text-slate-400 text-2xl"></i>
+                                <input type="text" id="name" required class="w-full bg-dark/90 border border-white/10 rounded-2xl py-6 pl-16 pr-6 text-white text-xl font-medium focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/50 transition-all shadow-inner" placeholder="John Doe">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-3 uppercase tracking-widest" for="email">Work Email</label>
+                            <div class="relative">
+                                <i class="ph-bold ph-envelope absolute left-6 top-1/2 transform -translate-y-1/2 text-slate-400 text-2xl"></i>
+                                <input type="email" id="email" required class="w-full bg-dark/90 border border-white/10 rounded-2xl py-6 pl-16 pr-6 text-white text-xl font-medium focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/50 transition-all shadow-inner" placeholder="john@agency.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-3 uppercase tracking-widest" for="phone">Phone Number</label>
+                            <div class="relative">
+                                <i class="ph-bold ph-phone absolute left-6 top-1/2 transform -translate-y-1/2 text-slate-400 text-2xl"></i>
+                                <input type="tel" id="phone" required class="w-full bg-dark/90 border border-white/10 rounded-2xl py-6 pl-16 pr-6 text-white text-xl font-medium focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/50 transition-all shadow-inner" placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+                        <button type="submit" id="submit-btn" class="w-full bg-white text-black hover:bg-slate-200 font-black py-6 rounded-2xl transition-all duration-300 flex justify-center items-center gap-3 group mt-8 text-2xl shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]">
+                            <span>Claim Free Strategy Session</span>
+                            <i class="ph-bold ph-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                        </button>
+                        <div id="form-message" class="hidden text-center text-xl font-bold mt-6 p-6 rounded-2xl"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-20 bg-dark text-center text-slate-500 text-lg relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-center gap-3 mb-8 text-4xl font-black text-white drop-shadow-lg">
+                <i class="ph-fill ph-hexagon text-brand"></i> NexusTech
+            </div>
+            <p class="mb-10 max-w-2xl mx-auto leading-relaxed font-medium">Building award-winning frontend architectures securely integrated with elite CRM systems.</p>
+            <div class="flex justify-center gap-8 mb-12">
+                <a href="#" class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-white transition-all shadow-xl hover:-translate-y-2"><i class="ph-fill ph-linkedin-logo text-3xl"></i></a>
+                <a href="#" class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand hover:text-white transition-all shadow-xl hover:-translate-y-2"><i class="ph-fill ph-twitter-logo text-3xl"></i></a>
+            </div>
+            <p class="font-bold tracking-widest uppercase text-sm">&copy; 2026 NexusTech Digital. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
