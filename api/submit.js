@@ -5,12 +5,14 @@ export default async function handler(req, res) {
 
     const { name, email, phone } = req.body;
     
-    // Grabbing both the secret key AND the location ID from Vercel
+    // 1. Grab the secure API key from Vercel
     const GHL_API_KEY = process.env.GHL_API_KEY;
-    const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID;
+    
+    // 2. Your specific GoHighLevel Location ID (Wrapped in quotes!)
+    const GHL_LOCATION_ID = "RjRdO55z7LzIW2SEwbNW";
 
-    if (!GHL_API_KEY || !GHL_LOCATION_ID) {
-        return res.status(500).json({ success: false, message: 'Server Configuration Error: Missing API Key or Location ID' });
+    if (!GHL_API_KEY) {
+        return res.status(500).json({ success: false, message: 'Server Configuration Error: Missing API Key' });
     }
 
     try {
@@ -18,7 +20,7 @@ export default async function handler(req, res) {
         const firstName = nameParts[0];
         const lastName = nameParts.slice(1).join(' ') || '';
 
-        // Sending to the modern V2 Endpoint
+        // 3. Send payload to GHL
         const ghlResponse = await fetch('https://services.leadconnectorhq.com/contacts/', {
             method: 'POST',
             headers: {
@@ -32,7 +34,7 @@ export default async function handler(req, res) {
                 lastName: lastName,
                 email: email,
                 phone: phone,
-                locationId: RjRdO55z7LzIW2SEwbNW, // <-- THIS WAS THE MISSING PIECE!
+                locationId: GHL_LOCATION_ID, 
                 tags: ['API_TEST', 'Agency_Lead']
             })
         });
