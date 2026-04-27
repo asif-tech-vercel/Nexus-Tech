@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         const lastName = nameParts.slice(1).join(' ') || '';
 
         // 3. Send payload to GHL
-        const ghlResponse = await fetch('https://services.leadconnectorhq.com/contacts/', {
+        const ghlResponse = await fetch('https://services.leadconnectorhq.com/contacts/upsert', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${GHL_API_KEY}`,
