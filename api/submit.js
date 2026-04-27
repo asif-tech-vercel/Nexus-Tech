@@ -1,49 +1,48 @@
 export default async function handler(req, res) {
-    // 1. Only allow POST requests
     if (req.method !== 'POST') {
         return res.status(405).json({ success: false, message: 'Method Not Allowed' });
     }
 
-    // 2. Extract data from your frontend form
     const { name, email, phone } = req.body;
-
-    // 3. Grab the secure API key from your Vercel Environment Variables
+    
+    // Grabbing both the secret key AND the location ID from Vercel
     const GHL_API_KEY = process.env.GHL_API_KEY;
+    const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID;
 
-    if (!GHL_API_KEY) {
-        return res.status(500).json({ success: false, message: 'Server Configuration Error: Missing API Key' });
+    if (!GHL_API_KEY || !GHL_LOCATION_ID) {
+        return res.status(500).json({ success: false, message: 'Server Configuration Error: Missing API Key or Location ID' });
     }
 
     try {
-        // 4. Split the full name into First and Last for GHL
         const nameParts = name.trim().split(' ');
         const firstName = nameParts[0];
         const lastName = nameParts.slice(1).join(' ') || '';
 
-        // 5. Send POST request to GoHighLevel V1 API (Matches Sub-Account Keys)
-        const ghlResponse = await fetch('https://rest.gohighlevel.com/v1/contacts/', {
+        // Sending to the modern V2 Endpoint
+        const ghlResponse = await fetch('https://services.leadconnectorhq.com/contacts/', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${GHL_API_KEY}`,
-                'Content-Type': 'application/json'
+                'Version': '2021-07-28',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
                 phone: phone,
+                locationId: RjRdO55z7LzIW2SEwbNW, // <-- THIS WAS THE MISSING PIECE!
                 tags: ['API_TEST', 'Agency_Lead']
             })
         });
 
         const data = await ghlResponse.json();
 
-        // 6. Check if GHL rejected it
         if (!ghlResponse.ok) {
-            throw new Error(data.message || data.error || 'Failed to sync with GoHighLevel');
+            throw new Error(data.message || 'Failed to sync with GoHighLevel');
         }
 
-        // 7. Send success response back to your frontend
         return res.status(200).json({ success: true, message: 'Payload securely routed to pipeline.' });
 
     } catch (error) {
